@@ -1,0 +1,103 @@
+.info__product {
+  cursor: pointer;
+}
+
+.figures {
+  border-radius: 50%;
+  background-color: rgb(130, 19, 40);
+  font-size: 60px;
+  font-family: "Gilroy-ExtraBold", sans-serif;
+  color: rgb(255, 255, 255);
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 13px;
+}
+
+.info__product:hover > :first-child {
+  background-color: #eba8b1;
+  color: rgb(130, 19, 40);
+}
+
+.title {
+  font-size: 20px;
+  font-family: "Gilroy-ExtraBold", sans-serif;
+  color: rgb(51, 25, 7);
+  line-height: 0.7;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 15px;
+  font-family: "Gilroy-Medium", sans-serif;
+  color: rgb(51, 25, 7);
+  line-height: 1.333;
+}
+
+/* 768 - 1023 */
+@media screen and (max-width: 1023px) {
+  .info__product {
+    width: 221px;
+    text-align: center;
+
+    .figures {
+      margin: auto;
+    }
+
+    .description__product {
+      width: 218px;
+    }
+  }
+}
+
+/* 425 - 767 */
+@media screen and (max-width: 767px) {
+  .info__product {
+    width: 165px;
+
+    .figures {
+      margin: auto;
+    }
+
+    .title {
+      width: 173px;
+    }
+
+    .description {
+      width: 186px;
+    }
+  }
+}
+
+/* 375 - 424 */
+@media screen and (max-width: 424px) {
+  .info__product {
+    .description {
+      font-size: 13px;
+      line-height: 1.385;
+      width: 165px;
+    }
+  }
+}
+
+/* 320 - 374 */
+@media screen and (max-width: 374px) {
+  .info__product {
+    width: 290px;
+    margin-bottom: 20px;
+
+    .figures {
+      margin: auto;
+    }
+
+    .title {
+      margin: 13px auto 20px auto
+    }
+
+    .description {
+      width: 252px;
+      margin: auto;
+    }
+  }
+}

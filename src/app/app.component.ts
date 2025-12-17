@@ -1,13 +1,16 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChoiceType} from "./types/choice.type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ChoiceService} from "./services/choice.service";
+import {CartChoiceService} from "./services/cart-choice.service";
+import {InfoProductType} from "./types/info-product.type";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   showOrder: boolean = false;
   showPresent: boolean = true;
   loader: boolean = false;
@@ -16,7 +19,16 @@ export class AppComponent {
     link: 'https://www.instagram.com/',
     image: 'instagram.png'
   }
-  public products = [
+  public choices: ChoiceType[] = [];
+
+  constructor(public choiceService: ChoiceService,
+              public cartChoiceService: CartChoiceService) { }
+
+  ngOnInit() {
+    this.choices = this.choiceService.getChoices();
+  }
+
+  public products: InfoProductType[] = [
     {
       title: 'Лучшие продукты',
       description: 'Мы честно готовим макаруны только из натуральных и качественных продуктов. Мы не используем консерванты, ароматизаторы и красители.'
@@ -35,33 +47,6 @@ export class AppComponent {
     },
   ];
 
-  public choices: ChoiceType[] = [
-    {
-      image: 'raspberry.png',
-      title: 'Макарун с малиной',
-      quantity: '1 шт.',
-      price: '1,70 руб.'
-    },
-    {
-      image: 'mango.png',
-      title: 'Макарун с манго',
-      quantity: '1 шт.',
-      price: '1,70 руб.'
-    },
-    {
-      image: 'vanilla.png',
-      title: 'Пирог с ванилью',
-      quantity: '1 шт.',
-      price: '1,70 руб.'
-    },
-    {
-      image: 'pistachios.png',
-      title: 'Пирог с фисташками',
-      quantity: '1 шт.',
-      price: '1,70 руб.'
-    },
-  ];
-
   public formValues = {
     choiceTitle: '',
     name: '',
@@ -75,6 +60,9 @@ export class AppComponent {
   public addToCart(choice: ChoiceType, target: HTMLElement): void {
     this.scrollTo(target);
     this.formValues.choiceTitle = choice.title.toUpperCase();
+    alert(`${choice.title} добавлен в корзину`)
+    this.cartChoiceService.count++;
+    this.cartChoiceService.addAmount(choice.price);
   }
 
   titleControl = new FormControl('', [Validators.required]);

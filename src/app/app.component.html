@@ -39,7 +39,7 @@
           <a href="#" class="menu__link" (click)="scrollTo(choiceElement)">Пироженки</a>
         </li>
         <li class="menu__item">
-          <a href="#info" class="menu__link">О нас</a>
+          <a href="#" class="menu__link" (click)="scrollTo(infoProduct)">О нас</a>
         </li>
         <li class="menu__item">
           <a href="#" class="menu__link" (click)="scrollTo(orderElement)">Оформить заказ</a>
@@ -68,7 +68,9 @@
         и ароматными домашними пироженками Macaroon!
       </div>
       <div class="main__action">
-        <button class="btn main__btn" (click)="scrollTo(choiceElement)">Выбрать макарун</button>
+        <button class="btn main__btn" (click)="scrollTo(choiceElement)"
+                btnEffect [btnBgDefaultColor]="'brown'"
+                [btnBgHoverColor]="'#E52B50'">Выбрать макарун</button>
       </div>
     </div>
     <div class="main__image">
@@ -98,12 +100,8 @@
         <img src="assets/images/macaroon.png" alt="Macaroon" class="info__image-img">
       </div>
     </div>
-    <div class="info__products">
-      <div class="info__product" *ngFor="let product of products; let i = index">
-        <div class="figures">{{ i + 1 }}</div>
-        <div class="title">{{ product.title }}</div>
-        <div class="description">{{ product.description }}</div>
-      </div>
+    <div class="info__products" #infoProduct>
+      <info-product *ngFor="let product of products; let i = index" [infoProduct]="product" [index]="i"></info-product>
     </div>
   </div>
 </section>
@@ -114,17 +112,8 @@
       Выберите свой макарун
     </div>
     <div class="choice__items">
-      <div class="choice__item" *ngFor="let choice of choices">
-        <div class="choice__image">
-          <img class="choice__image-img" src="assets/images/choice/{{choice.image}}" alt="Raspberry">
-        </div>
-        <div class="block">
-          <div class="choice__title">{{ choice.title }}</div>
-          <div class="quantity">{{ choice.quantity }}</div>
-          <div class="price">{{ choice.price }}</div>
-          <button class="btn choice__btn" (click)="addToCart(choice, orderElement)">Заказать</button>
-        </div>
-      </div>
+      <choice *ngFor="let choice of choices" [choice]="choice"
+              (addToCartEvent)="addToCart($event, orderElement)"></choice>
     </div>
   </div>
 </section>
@@ -169,7 +158,7 @@
                  prefix="+7 " mask="(000) 000-00-00"
                  [(ngModel)]="formValues.phone" formControlName="phone" required>
         </div>
-        <button class="btn order__btn" (click)="createForm()">Оформить заказ</button>
+        <button class="btn order__btn" btnEffect (click)="createForm()">Оформить заказ</button>
       </form>
 
     </div>
@@ -200,8 +189,9 @@
     <div class="phone footer__phone">{{ phone }}</div>
   </div>
   <div class="footer__gift">
-    <img src="assets/images/present.png" alt="Gift">
-    <div class="footer__text" *ngIf="{showOrder: true} ? showPresent: false">Оформите заказ и получите подарок!</div>
+    <div class="footer__cart">{{cartChoiceService.count}}</div>
+    <img src="assets/images/cart.png" alt="Gift">
+    <div class="footer__text" *ngIf="{showOrder: true} ? showPresent: false">{{cartChoiceService.total | swapTextNumber: ' руб.'}}</div>
   </div>
 </footer>
 

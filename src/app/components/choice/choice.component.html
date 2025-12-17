@@ -1,0 +1,13 @@
+<div class="choice__item">
+  <div class="choice__image">
+    <img class="choice__image-img" src="assets/images/choice/{{choice.image}}" alt="Raspberry">
+  </div>
+  <div class="block">
+    <div class="choice__title">{{ choice.title }}</div>
+    <div class="quantity">{{ choice.quantity }}</div>
+    <div class="price">{{ choice.price | swapTextNumber: ' руб.' }}</div>
+    <button class="btn choice__btn" btnEffect (click)="addChoiceToCart()"
+            [btnBgDefaultColor]="'brown'"
+            [btnBgHoverColor]="'#E52B50'">Заказать</button>
+  </div>
+</div>

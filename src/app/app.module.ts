@@ -1,5 +1,9 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {registerLocaleData} from "@angular/common";
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru-RU');
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -10,6 +14,8 @@ import { InfoProductComponent } from './components/info-product/info-product.com
 import { ChoiceComponent } from './components/choice/choice.component';
 import { BtnEffectDirective } from './directives/btn-effect.directive';
 import { TextReductionPipe } from './pipes/text-reduction.pipe';
+import { PhoneFormatPipe } from './pipes/phone-format.pipe';
+
 
 
 @NgModule({
@@ -19,7 +25,8 @@ import { TextReductionPipe } from './pipes/text-reduction.pipe';
     InfoProductComponent,
     ChoiceComponent,
     BtnEffectDirective,
-    TextReductionPipe
+    TextReductionPipe,
+    PhoneFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,10 @@ import { TextReductionPipe } from './pipes/text-reduction.pipe';
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'ru-RU'},
+    AppComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

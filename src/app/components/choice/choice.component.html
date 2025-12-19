@@ -5,7 +5,7 @@
   <div class="block">
     <div class="choice__title">{{ choice.title }}</div>
     <div class="quantity">{{ choice.quantity }}</div>
-    <div class="price">{{ choice.price | swapTextNumber: ' руб.' }}</div>
+    <div class="price">{{ choice.price | currency: 'руб.'}}</div>
     <button class="btn choice__btn" btnEffect (click)="addChoiceToCart()"
             [btnBgDefaultColor]="'brown'"
             [btnBgHoverColor]="'#E52B50'">Заказать</button>

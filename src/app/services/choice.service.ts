@@ -13,25 +13,25 @@ export class ChoiceService {
         image: 'raspberry.png',
         title: 'Макарун с малиной',
         quantity: '1 шт.',
-        price: 1.70
+        price: 1.7
       },
       {
         image: 'mango.png',
         title: 'Макарун с манго',
         quantity: '1 шт.',
-        price: 1.70
+        price: 1.7
       },
       {
         image: 'vanilla.png',
         title: 'Пирог с ванилью',
         quantity: '1 шт.',
-        price: 1.70
+        price: 1.7
       },
       {
         image: 'pistachios.png',
         title: 'Пирог с фисташками',
         quantity: '1 шт.',
-        price: 1.70
+        price: 1.7
       }
     ]
   }

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   showOrder: boolean = false;
   showPresent: boolean = true;
   loader: boolean = false;
-  phone = '+375 (29) 368-98-68';
+  phone = '375293689868';
   instagram =  {
     link: 'https://www.instagram.com/',
     image: 'instagram.png'
